@@ -6,6 +6,6 @@ import Prompt from '@components/Prompt';
 
 export const Component = {
     Alert: withReactModal(Alert),
-    Confirm,
-    Prompt,
+    Confirm: withReactModal(Confirm),
+    Prompt: withReactModal(Prompt),
 };
