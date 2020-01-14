@@ -4,11 +4,11 @@
 
 ## Install
 ### Using npm
-```
+```bash
 $ npm install --save @entrylabs/tool
 ```
 ### Using yarn
-```
+```bash
 $ yarn add @entrylabs/tool
 ```
 
@@ -84,4 +84,3 @@ const value = await EntryTool.prompt('content', 'defaultValue', 'title', {
   positiveButtonText: "positiveButtonText"
 });
 ```
-
