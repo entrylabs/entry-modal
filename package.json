@@ -2,8 +2,8 @@
     "name": "@entrylabs/modal",
     "version": "1.0.0",
     "description": "",
-    "main": "dist/some-package.cjs.js",
-    "jsnext:main": "dist/some-package.es6.js",
+    "main": "dist/entry-modal.cjs.js",
+    "jsnext:main": "dist/entry-modal.esm.js",
     "scripts": {
         "dist": "cross-env NODE_ENV=production rollup -c",
         "build": "cross-env NODE_ENV=production rollup -c",
