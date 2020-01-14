@@ -1,6 +1,6 @@
 {
     "name": "@entrylabs/modal",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "",
     "unpkg": "dist/entry-modal.js",
     "browser": "dist/entry-modal.js",
