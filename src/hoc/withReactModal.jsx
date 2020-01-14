@@ -21,7 +21,6 @@ const withReactModal = (WrappedComponent) => {
         }
 
         render() {
-            console.log(ReactDOM);
             return ReactDOM.createPortal(
                 <div className={Styles.box}>
                     <WrappedComponent {...this.props} />
