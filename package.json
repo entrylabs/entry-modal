@@ -2,7 +2,10 @@
     "name": "@entrylabs/modal",
     "version": "1.0.7",
     "description": "",
+    "unpkg": "dist/entry-modal.js",
+    "browser": "dist/entry-modal.js",
     "main": "dist/entry-modal.cjs.js",
+    "module": "dist/entry-modal.esm.js",
     "jsnext:main": "dist/entry-modal.esm.js",
     "scripts": {
         "dist": "cross-env NODE_ENV=production rollup -c",
