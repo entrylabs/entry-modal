@@ -9,7 +9,9 @@ const withDefaultModal = (WrappedComponent, argsList) => (...args) => {
         #promise = null;
         constructor(props) {
             if (eventSet.size > 0) {
-                for (let resolve of eventSet.values()) resolve();
+                for (const resolve of eventSet.values()) {
+                    resolve();
+                }
                 eventSet.clear();
             }
             const modal = document.querySelector('#EntryModal');
