@@ -44,7 +44,7 @@ class Confirm extends Component {
         e.preventDefault();
     }
 
-    setTheme({ theme = 'line' }) {
+    setTheme({ theme = 'entry' }) {
         Theme.setType(theme);
         this.theme = Theme.getStyle('Confirm');
     }
