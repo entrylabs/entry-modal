@@ -11,11 +11,10 @@ import { terser } from 'rollup-plugin-terser';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const plugins = [
-    isProduction
-        ? clear({
-              targets: ['component', 'dist'],
-          })
-        : undefined,
+    isProduction &&
+        clear({
+            targets: ['component', 'dist'],
+        }),
     builtins(),
     postcss({
         modules: true,
@@ -104,7 +103,7 @@ const plugins = [
             ? JSON.stringify('production')
             : JSON.stringify('development'),
     }),
-    isProduction ? terser() : undefined,
+    isProduction && terser(),
 ];
 
 export default [
