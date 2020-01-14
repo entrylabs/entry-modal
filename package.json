@@ -1,6 +1,6 @@
 {
     "name": "@entrylabs/modal",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "",
     "main": "dist/entry-modal.cjs.js",
     "jsnext:main": "dist/entry-modal.esm.js",
