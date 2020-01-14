@@ -1,0 +1,53 @@
+{
+  "name": "entry-modal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/some-package.cjs.js",
+  "jsnext:main": "dist/some-package.es6.js",
+  "scripts": {
+    "dist": "cross-env NODE_ENV=production rollup -c",
+    "build": "cross-env NODE_ENV=production rollup -c",
+    "dev": "rollup -c -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/entrylabs/entry-modal.git"
+  },
+  "author": "kimorkim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/entrylabs/entry-modal/issues"
+  },
+  "homepage": "https://github.com/entrylabs/entry-modal#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.0",
+    "@babel/plugin-transform-object-assign": "^7.8.0",
+    "@babel/plugin-transform-regenerator": "^7.8.0",
+    "@babel/plugin-transform-runtime": "^7.8.0",
+    "@babel/preset-env": "^7.8.2",
+    "@babel/preset-react": "^7.8.0",
+    "@babel/runtime": "^7.8.0",
+    "@entrylabs/postcss-url": "^8.0.1",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "events": "^3.1.0",
+    "lodash-es": "^4.17.15",
+    "node-sass": "^4.13.0",
+    "rollup": "^1.29.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-terser": "^5.2.0"
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}

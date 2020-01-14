@@ -1,0 +1,104 @@
+.prompt {
+    background: #fff;
+    width: 402px;
+    max-height: 283px;
+    min-height: 203px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    // border-bottom-left-radius: 7px;
+    // border-bottom-right-radius: 7px;
+
+    .title {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        background-color: #5096f5;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+
+        :global(.entryLmsText) {
+            display: inline-block;
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            margin: 0px 26px;
+            height: 54px;
+            line-height: 54px;
+            font-family: NanumGothic;
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        :global(.entryLmsClose) {
+            display: inline-block;
+            cursor: pointer;
+            right: 0;
+            margin: 16px 26px 0 0;
+            width: 22px;
+            height: 22px;
+            background-image: url(../../styles/assets/close_icon.png);
+            background-repeat: no-repeat;
+        }
+    }
+
+    .contentView {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .content {
+            width: 330px;
+            font-family: NanumGothic;
+            font-size: 16px;
+            text-align: center;
+            overflow: hidden;
+            word-break: break-word;
+            margin: 34px 36px 0;
+        }
+
+        .media {
+            width: 308px;
+            height: 190px;
+            overflow: hidden;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+
+            img {
+                width: auto;
+                height: auto;
+                max-width: 100%;
+                max-height: 100%;
+                min-width: 1px;
+            }
+        }
+
+        .button {
+            display: inline-block;
+            width: 105px;
+            height: 40px;
+            margin: 29px 10px 30px;
+            border-radius: 3px;
+            border: solid 1px #5848b8;
+            color: #fff;
+            background-color: #6e5ae6;
+            text-align: center;
+            line-height: 40px;
+            font-family: NanumGothic;
+            font-size: 16px;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .cancelButton {
+            background-color: #d8d8d8;
+            border: solid 1px #9b9b9b;
+            color: #3b3b3b;
+        }
+    }
+}
