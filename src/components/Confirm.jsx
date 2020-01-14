@@ -62,7 +62,7 @@ class Confirm extends Component {
             if (typeof content === 'object') {
                 view = (
                     <div
-                        className={`${Style.content} entrylmsAlertContent`}
+                        className={`${this.theme.content} entrylmsAlertContent`}
                         dangerouslySetInnerHTML={{
                             __html: content.outerHTML,
                         }}

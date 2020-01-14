@@ -65,7 +65,7 @@ class Alert extends Component {
             if (typeof content === 'object') {
                 view = (
                     <div
-                        className={`${Style.content} entrylmsAlertContent`}
+                        className={`${this.theme.content} entrylmsAlertContent`}
                         dangerouslySetInnerHTML={{
                             __html: content.outerHTML,
                         }}
@@ -91,7 +91,6 @@ class Alert extends Component {
             title = getLang('General.alert_title', '알림'),
             content,
             options = {},
-            theme,
         } = this.props;
         const {
             positiveButtonText = getLang('Buttons.course_done'),

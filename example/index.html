@@ -10,8 +10,20 @@
         <script src="../dist/entry-modal.js"></script>
     </head>
     <body>
+        <button onclick="handleAlert()">Alert</button>
+        <button onclick="handleConfirm()">Confirm</button>
+        <button onclick="handlePrompt()">Prompt</button>
         <script>
             // alert('asd');
+            function handleAlert() {
+                EntryModal.alert('test');
+            }
+            function handleConfirm() {
+                EntryModal.confirm('test');
+            }
+            function handlePrompt() {
+                EntryModal.prompt('test');
+            }
         </script>
     </body>
 </html>

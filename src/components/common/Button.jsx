@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { compStatusTypes } from '../../Constants';
 
 class Button extends Component {
     constructor(props) {
