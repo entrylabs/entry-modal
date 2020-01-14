@@ -33,8 +33,7 @@ const plugins = [
     }),
     json(),
     resolve({
-        jsnext: true,
-        main: true,
+        mainFields: ['module', 'main', 'browser'],
         browser: true,
         preferBuiltins: true,
         extensions: ['.mjs', '.js', '.jsx', '.json'],
