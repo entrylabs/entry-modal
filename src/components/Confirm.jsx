@@ -71,9 +71,9 @@ class Confirm extends Component {
             } else if (typeof content === 'string') {
                 view = <div>{content}</div>;
             }
-        } catch (e) {}
-
-        return view;
+        } finally {
+            return view;
+        }
     }
 
     render() {
