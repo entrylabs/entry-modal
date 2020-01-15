@@ -5,11 +5,11 @@
 ## Install
 ### Using npm
 ```bash
-$ npm install --save @entrylabs/tool
+$ npm install --save @entrylabs/modal
 ```
 ### Using yarn
 ```bash
-$ yarn add @entrylabs/tool
+$ yarn add @entrylabs/modal
 ```
 
 ## Example
