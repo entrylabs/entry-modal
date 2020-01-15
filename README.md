@@ -28,7 +28,7 @@ const { Alert, Confirm, Prompt } = require('@entrylabs/modal');
 
 ### Import - script
 ```html
-<link rel="stylesheet" href="{prefix}/entry-modal.css" />
+<link rel="stylesheet" href="{prefix}/entry/entry-modal.css" />
 <script src="{prefix}/entry-modal.js"></script>
 const { alert, confirm, prompt } = EntryTool;
 ```
@@ -38,7 +38,6 @@ const { alert, confirm, prompt } = EntryTool;
 <Alert
   content="content"
   title="title"
-  theme="entry" // [entry, line] default = entry
   onEvent={() => {}}
   options={{ 
     positiveButtonText: "positiveButtonText"
@@ -47,7 +46,6 @@ const { alert, confirm, prompt } = EntryTool;
 <Confirm
   content="content"
   title="title"
-  theme="entry" // [entry, line] default = entry
   onEvent={() => {}}
   options={{ 
     negativeButtonText: "negativeButtonText",
@@ -58,7 +56,6 @@ const { alert, confirm, prompt } = EntryTool;
   content="content"
   defaultValue="defaultValue"
   title="title"
-  theme="entry" // [entry, line] default = entry
   onEvent={() => {}}
   options={{ 
     placeholder: "ppp",
