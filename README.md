@@ -12,6 +12,11 @@ $ npm install --save @entrylabs/tool
 $ yarn add @entrylabs/tool
 ```
 
+## Example
+### Codesandbox
+- React Component : https://codesandbox.io/s/entry-modal-react-owr04
+- IIFE : https://codesandbox.io/s/entry-modal-iife-rf1rl
+
 ## Usage
 ### Import - React Component
 #### Using ECMAScript module
