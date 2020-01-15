@@ -8,7 +8,7 @@ class Button extends Component {
     }
 
     getButtonClassName() {
-        return `button ${this.props.className}`;
+        return `entry-modal-button ${this.props.className}`;
     }
 
     handleOnClick(e) {

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import Button from './common/Button';
 import Title from './common/Title';
-import Theme from '@utils/Theme';
 import { getLang } from '@utils';
 
 class Confirm extends Component {
     constructor(props) {
         super(props);
-        this.setTheme(props);
     }
 
     componentDidMount() {
@@ -44,11 +42,6 @@ class Confirm extends Component {
         e.preventDefault();
     }
 
-    setTheme({ theme = 'entry' }) {
-        Theme.setType(theme);
-        this.theme = Theme.getStyle('Confirm');
-    }
-
     handleButtonClick(event) {
         const { onEvent } = this.props;
         if (onEvent) {
@@ -62,7 +55,7 @@ class Confirm extends Component {
             if (typeof content === 'object') {
                 view = (
                     <div
-                        className={`${this.theme.content} entrylmsAlertContent`}
+                        className={`entry-modal-content entrylmsAlertContent`}
                         dangerouslySetInnerHTML={{
                             __html: content.outerHTML,
                         }}
@@ -87,24 +80,24 @@ class Confirm extends Component {
             positiveButtonText = getLang('Buttons.course_done'),
         } = options;
         return (
-            <div className={this.theme.confirm}>
+            <div className={'entry-modal-confirm'}>
                 <Title
-                    className={this.theme.title}
+                    className={'entry-modal-title'}
                     isClose
                     onClose={() => this.handleButtonClick('close')}
                 >
                     {title}
                 </Title>
-                <div className={this.theme.contentView}>
-                    <div className={this.theme.content}>{this.createContent(content)}</div>
+                <div className={'entry-modal-contentView'}>
+                    <div className={'entry-modal-content'}>{this.createContent(content)}</div>
                     <div>
                         <Button
-                            className={`${this.theme.button} ${this.theme.cancelButton}`}
+                            className={`entry-modal-button entry-modal-cancelButton`}
                             text={negativeButtonText}
                             onClick={() => this.handleButtonClick('cancel')}
                         />
                         <Button
-                            className={this.theme.button}
+                            className={'entry-modal-button'}
                             text={positiveButtonText}
                             onClick={() => this.handleButtonClick('ok')}
                         />

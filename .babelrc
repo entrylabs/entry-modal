@@ -1,0 +1,35 @@
+{
+    "plugins": [
+        ["@babel/plugin-transform-runtime", { "useESModules": true }],
+        "@babel/plugin-transform-regenerator",
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-transform-object-assign",
+        "@babel/plugin-proposal-class-properties",
+        [
+            "module-resolver",
+            {
+                "root": ["./"],
+                "alias": {
+                    "@components": "./src/components",
+                    "@containers": "./src/containers",
+                    "@hoc": "./src/hoc",
+                    "@styles": "./src/styles",
+                    "@utils": "./src/utils"
+                }
+            }
+        ]
+    ],
+    "presets": [
+        ["@babel/react", { "modules": false }],
+        [
+            "@babel/env",
+            {
+                "modules": false,
+                "targets": {
+                    "browsers": ["ie >= 11"]
+                }
+            }
+        ]
+    ],
+    "exclude": "node_modules/**"
+}
