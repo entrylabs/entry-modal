@@ -5,8 +5,6 @@
     min-height: 203px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    // border-bottom-left-radius: 7px;
-    // border-bottom-right-radius: 7px;
 
     .title {
         display: -webkit-box;
@@ -16,7 +14,7 @@
         border-top-left-radius: 3px;
         border-top-right-radius: 3px;
 
-        :global(.entryLmsText) {
+        .entryLmsText {
             display: inline-block;
             -webkit-box-flex: 1;
             -ms-flex: 1;
@@ -28,7 +26,7 @@
             color: #ffffff;
         }
 
-        :global(.entryLmsClose) {
+        .entryLmsClose {
             display: inline-block;
             cursor: pointer;
             right: 0;

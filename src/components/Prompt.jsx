@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import Button from './common/Button';
 import Title from './common/Title';
-import Theme from '@utils/Theme';
 import { getLang } from '@utils';
 
 class Prompt extends Component {
     constructor(props) {
         super(props);
         this.inputBox = React.createRef();
-        this.setTheme(props);
     }
 
     componentDidMount() {
@@ -45,11 +43,6 @@ class Prompt extends Component {
         e.preventDefault();
     }
 
-    setTheme({ theme = 'entry' }) {
-        Theme.setType(theme);
-        this.theme = Theme.getStyle('Prompt');
-    }
-
     handleButtonClick(event) {
         const { onEvent } = this.props;
         if (!onEvent) {
@@ -68,7 +61,7 @@ class Prompt extends Component {
             if (typeof content === 'object') {
                 view = (
                     <div
-                        className={`${this.theme.content} entrylmsAlertContent`}
+                        className={`entry-modal-content entrylmsAlertContent`}
                         dangerouslySetInnerHTML={{
                             __html: content.outerHTML,
                         }}
@@ -95,16 +88,16 @@ class Prompt extends Component {
             placeholder = getLang('General.prompt_placeholder', ''),
         } = options;
         return (
-            <div className={this.theme.prompt}>
+            <div className={'entry-modal-prompt'}>
                 <Title
-                    className={this.theme.title}
+                    className={'entry-modal-title'}
                     isClose
                     onClose={() => this.handleButtonClick('close')}
                 >
                     {title}
                 </Title>
-                <div className={this.theme.contentView}>
-                    <div className={this.theme.content}>{this.createContent(content)}</div>
+                <div className={'entry-modal-contentView'}>
+                    <div className={'entry-modal-content'}>{this.createContent(content)}</div>
                     <div>
                         <input
                             ref={this.inputBox}
@@ -115,12 +108,12 @@ class Prompt extends Component {
                     </div>
                     <div>
                         <Button
-                            className={`${this.theme.button} ${this.theme.cancelButton}`}
+                            className={`entry-modal-button entry-modal-cancelButton`}
                             text={negativeButtonText}
                             onClick={() => this.handleButtonClick('cancel')}
                         />
                         <Button
-                            className={this.theme.button}
+                            className={'entry-modal-button'}
                             text={positiveButtonText}
                             onClick={() => this.handleButtonClick('ok')}
                         />

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Styles from '@styles/Modal.scss';
 
 const modalRoot = document.querySelector('body');
 
@@ -9,7 +8,7 @@ const withReactModal = (WrappedComponent) => {
         constructor(props) {
             super(props);
             this.el = document.createElement('div');
-            this.el.className = Styles.modal;
+            this.el.className = 'entry-modal-modal';
         }
 
         componentDidMount() {
@@ -22,7 +21,7 @@ const withReactModal = (WrappedComponent) => {
 
         render() {
             return ReactDOM.createPortal(
-                <div className={Styles.box}>
+                <div className={'entry-modal-box'}>
                     <WrappedComponent {...this.props} />
                 </div>,
                 this.el

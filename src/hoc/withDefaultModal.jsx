@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Styles from '@styles/Modal.scss';
 
 const eventSet = new Set();
 const withDefaultModal = (WrappedComponent, argsList) => (...args) => {
@@ -21,7 +20,7 @@ const withDefaultModal = (WrappedComponent, argsList) => (...args) => {
                 const body = document.querySelector('body');
                 this.#container = document.createElement('div');
                 this.#container.id = 'EntryModal';
-                this.#container.className = Styles.modal;
+                this.#container.className = 'entry-modal-modal';
                 body.appendChild(this.#container);
             }
             return this.render(props);
@@ -40,7 +39,7 @@ const withDefaultModal = (WrappedComponent, argsList) => (...args) => {
                 return new Promise((resolve, reject) => {
                     eventSet.add(resolve);
                     ReactDOM.render(
-                        <div className={Styles.box}>
+                        <div className={'entry-modal-box'}>
                             <WrappedComponent
                                 {...argsList.reduce((acc, key, i) => {
                                     acc[key] = props[i];

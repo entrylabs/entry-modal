@@ -6,7 +6,7 @@ class Title extends Component {
         let button = null;
 
         if (this.props.isClose !== false) {
-            button = <Button className="entryLmsClose" onClick={this.props.onClose} />;
+            button = <Button className="entry-modal-entryLmsClose" onClick={this.props.onClose} />;
         }
 
         return button;
@@ -14,8 +14,8 @@ class Title extends Component {
 
     render() {
         return (
-            <div className={this.props.className || 'entryLmsTitle'}>
-                <div className="entryLmsText">{this.props.children}</div>
+            <div className={this.props.className || 'entry-modal-entryLmsTitle'}>
+                <div className="entry-modal-entryLmsText">{this.props.children}</div>
                 {this.createCloseButton()}
             </div>
         );

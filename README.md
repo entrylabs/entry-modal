@@ -16,15 +16,14 @@ $ yarn add @entrylabs/tool
 ### Import - React Component
 #### Using ECMAScript module
 ```javascript
-import '@entrylabs/modal/dist/entry-modal.css'
-import { Component } from '@entrylabs/modal';
-const { Alert, Confirm, Prompt } = Component;
+import '@entrylabs/modal/dist/entry/entry-modal.css'
+import { Alert, Confirm, Prompt } from '@entrylabs/modal';
 ```
 
 #### Using CommonJS module
 ```javascript
 require('@entrylabs/modal/dist/entry-modal.css');
-const { Component: { Alert, Confirm, Prompt } } = require('@entrylabs/modal');
+const { Alert, Confirm, Prompt } = require('@entrylabs/modal');
 ```
 
 ### Import - script
