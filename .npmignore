@@ -87,3 +87,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .cache/
+
+# source
+/stories
+.prettierrc
+.jsconfig.json
+webpack.config.js
+yarn.lock
