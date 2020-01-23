@@ -105,6 +105,7 @@ class Prompt extends Component {
                             type="text"
                             placeholder={placeholder}
                             defaultValue={defaultValue}
+                            autoFocus
                         />
                     </div>
                     <div className={'entry-modal-button-group'}>
