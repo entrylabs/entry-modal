@@ -1,3 +1,3 @@
 import withReactModal from '@hoc/withReactModal';
-import Prompt from '@components/Prompt/index';
+import Prompt from '@components/Prompt';
 export default withReactModal(Prompt);
