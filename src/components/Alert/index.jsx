@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Button from './common/Button';
-import Title from './common/Title';
+import Button from '../common/Button';
+import Title from '../common/Title';
 import { getLang } from '@utils';
 
 class Alert extends Component {
@@ -81,12 +81,12 @@ class Alert extends Component {
 
     render() {
         const {
-            title = getLang('General.alert_title', '알림'),
+            title = getLang('General.alert_title', 'alert'),
             content,
             options = {},
         } = this.props;
         const {
-            positiveButtonText = getLang('Buttons.course_done'),
+            positiveButtonText = getLang('Buttons.course_done', 'ok'),
             positiveButtonStyle = {},
             withDontShowAgain = false,
         } = options;

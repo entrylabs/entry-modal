@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import Button from './common/Button';
-import Title from './common/Title';
+import Button from '../common/Button';
+import Title from '../common/Title';
 import { getLang } from '@utils';
 
-class Confirm extends Component {
+class Prompt extends Component {
     constructor(props) {
         super(props);
+        this.inputBox = React.createRef();
     }
 
     componentDidMount() {
@@ -44,8 +45,13 @@ class Confirm extends Component {
 
     handleButtonClick(event) {
         const { onEvent } = this.props;
-        if (onEvent) {
-            onEvent(event === 'ok');
+        if (!onEvent) {
+            return;
+        }
+        if (event === 'ok') {
+            onEvent(this.inputBox.current.value);
+        } else {
+            onEvent(null);
         }
     }
 
@@ -71,16 +77,18 @@ class Confirm extends Component {
 
     render() {
         const {
-            title = getLang('General.confirm_title', '확인'),
+            title = getLang('General.prompt_title', 'prompt'),
+            defaultValue,
             content,
             options = {},
         } = this.props;
         const {
-            negativeButtonText = getLang('Buttons.cancel'),
-            positiveButtonText = getLang('Buttons.course_done'),
+            negativeButtonText = getLang('Buttons.cancel', 'cancel'),
+            positiveButtonText = getLang('Buttons.course_done', 'ok'),
+            placeholder = '',
         } = options;
         return (
-            <div className={'entry-modal-confirm'}>
+            <div className={'entry-modal-prompt'}>
                 <Title
                     className={'entry-modal-title'}
                     isClose
@@ -91,6 +99,15 @@ class Confirm extends Component {
                 <div className={'entry-modal-contentView'}>
                     <div className={'entry-modal-content'}>{this.createContent(content)}</div>
                     <div>
+                        <input
+                            className={'entry-modal-prompt-input'}
+                            ref={this.inputBox}
+                            type="text"
+                            placeholder={placeholder}
+                            defaultValue={defaultValue}
+                        />
+                    </div>
+                    <div className={'entry-modal-button-group'}>
                         <Button
                             className={`entry-modal-button entry-modal-cancelButton`}
                             text={negativeButtonText}
@@ -108,4 +125,4 @@ class Confirm extends Component {
     }
 }
 
-export default Confirm;
+export default Prompt;

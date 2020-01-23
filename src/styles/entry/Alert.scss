@@ -1,17 +1,20 @@
 .alert {
     background: #fff;
-    width: 400px;
+    width: 388px;
     min-height: 203px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    user-select: none;
 
     .title {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
-        background-color: #2a7def;
-        border-top-left-radius: 3px;
-        border-top-right-radius: 3px;
+        background-color: #4f80ff;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
         .entryLmsText {
             display: inline-block;
             -webkit-box-flex: 1;
@@ -19,10 +22,13 @@
             flex: 1;
             margin: 0px 26px;
             height: 54px;
-            line-height: 54px;
             font-family: NanumGothic;
-            font-size: 18px;
-            font-weight: 100;
+            font-size: 20px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 54px;
+            letter-spacing: -0.71px;
             color: #ffffff;
         }
         .entryLmsClose {
@@ -32,7 +38,7 @@
             margin: 16px 26px 0 0;
             width: 22px;
             height: 22px;
-            background-image: url(../assets/close_icon.png);
+            background-image: url(../assets/close_icon.svg);
             background-repeat: no-repeat;
         }
     }
@@ -42,8 +48,14 @@
         align-items: center;
         .content {
             width: 330px;
+            color: #2c313d;
             font-family: NanumGothic;
-            font-size: 16px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.11;
+            letter-spacing: -0.64px;
+            font-size: 18px;
             text-align: center;
             overflow: hidden;
             word-break: break-word;
@@ -69,23 +81,27 @@
             }
         }
         .button {
-            width: 102px;
-            height: 42px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 2px;
+            width: 146px;
+            height: 44px;
             margin: 34px 149px 32px;
-            border-radius: 3px;
-            border: solid 1px #5848b8;
+            border-radius: 6px;
+            border: solid 1px #4f80ff;
             color: #fff;
-            background-color: #6e5ae6;
+            background-color: #4f80ff;
             text-align: center;
             line-height: 40px;
             font-family: NanumGothic;
-            font-weight: 200;
-            font-size: 16px;
+            font-weight: bold;
+            font-size: 14px;
+            font-stretch: normal;
+            font-style: normal;
+            letter-spacing: -0.32px;
+            text-align: center;
             cursor: pointer;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
         }
         .checkBox {
             display: flex;
