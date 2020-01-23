@@ -1,19 +1,39 @@
+const postcssPrefixer = require('postcss-prefixer');
+
 module.exports = {
     stories: ['../stories/**/*.stories.js', '../src/**/*.stories.js'],
     addons: ['@storybook/addon-actions', '@storybook/addon-links'],
     webpackFinal: async (config, { configType }) => {
-        // `configType` has a value of 'DEVELOPMENT' or 'PRODUCTION'
-        // You can change the configuration based on that.
-        // 'PRODUCTION' is used when building the static version of storybook.
-
-        // Make whatever fine-grained changes you need
         config.module.rules.push({
-            test: /\.scss$/,
-            use: ['style-loader', 'css-loader', 'sass-loader'],
-            include: path.resolve(__dirname, '../'),
+            test: /\.s[ac]ss$/i,
+            use: [
+                'style-loader',
+                {
+                    loader: 'css-loader',
+                    options: {
+                        sourceMap: true,
+                    },
+                },
+                {
+                    loader: 'postcss-loader',
+                    options: {
+                        sourceMap: true,
+                        plugins: [
+                            postcssPrefixer({
+                                prefix: 'entry-modal-',
+                            }),
+                        ],
+                    },
+                },
+                {
+                    loader: 'sass-loader',
+                    options: {
+                        sourceMap: true,
+                    },
+                },
+            ],
         });
 
-        // Return the altered config
         return config;
     },
 };
