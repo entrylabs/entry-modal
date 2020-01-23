@@ -15,6 +15,11 @@ class Prompt extends Component {
             passive: false,
         });
         document.addEventListener('keyup', this.keyboardEvent);
+        requestAnimationFrame(() => {
+            if (this.inputBox.current) {
+                this.inputBox.current.focus();
+            }
+        });
     }
 
     componentWillUnmount() {
@@ -105,7 +110,7 @@ class Prompt extends Component {
                             type="text"
                             placeholder={placeholder}
                             defaultValue={defaultValue}
-                            autoFocus
+                            autoFocus={true}
                         />
                     </div>
                     <div className={'entry-modal-button-group'}>
