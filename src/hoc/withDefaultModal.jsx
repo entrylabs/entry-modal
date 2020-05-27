@@ -28,7 +28,11 @@ const withDefaultModal = (WrappedComponent, argsList) => (...args) => {
 
         handleEvent = (resolve) => (event) => {
             if (this.#container) {
-                this.#container.remove();
+                if (this.#container.remove) {
+                    this.#container.remove();
+                } else {
+                    this.#container.parentNode.removeChild(this.#container);
+                }
             }
             eventSet.delete(resolve);
             resolve(event);
