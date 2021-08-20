@@ -1,7 +1,6 @@
 .confirm {
     background: #fff;
     width: 388px;
-    max-height: 283px;
     min-height: 203px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -52,19 +51,20 @@
         align-items: center;
 
         .content {
-            width: 330px;
+            width: 348px;
             color: #2c313d;
             font-family: NanumGothic;
             font-weight: bold;
             font-stretch: normal;
             font-style: normal;
-            line-height: 1.11;
+            line-height: 24px;
             letter-spacing: -0.64px;
             font-size: 18px;
             text-align: center;
             overflow: hidden;
             word-break: break-word;
-            margin: 34px 36px 0;
+            white-space: pre-line;
+            margin: 40px 20px 0;
         }
 
         .media {
@@ -96,7 +96,7 @@
                 padding-bottom: 2px;
                 width: 146px;
                 height: 48px;
-                margin: 34px 8px 32px;
+                margin: 30px 4.5px 40px;
                 border-radius: 6px;
                 border: solid 1px #4f80ff;
                 color: #fff;
