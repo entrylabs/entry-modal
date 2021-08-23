@@ -47,20 +47,20 @@
         flex-direction: column;
         align-items: center;
         .content {
-            width: 330px;
+            width: 348px;
             color: #2c313d;
             font-family: NanumGothic;
             font-weight: bold;
             font-stretch: normal;
             font-style: normal;
-            line-height: 1.11;
+            line-height: 24px;
             letter-spacing: -0.64px;
             font-size: 18px;
             text-align: center;
             overflow: hidden;
             word-break: break-word;
             white-space: pre-line;
-            margin: 32px 36px 0;
+            margin: 40px 20px 0;
         }
         .media {
             width: 308px;
@@ -87,7 +87,7 @@
             padding-bottom: 2px;
             width: 146px;
             height: 48px;
-            margin: 34px 149px 32px;
+            margin: 30px 149px 40px;
             border-radius: 6px;
             border: solid 1px #4f80ff;
             color: #fff;
