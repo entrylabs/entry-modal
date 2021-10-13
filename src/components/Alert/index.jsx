@@ -116,8 +116,9 @@ class Alert extends Component {
                             }}
                         >
                             <div
-                                className={`entry-modal-checkDiv ${dontShowChecked &&
-                                    'entry-modal-checked'}`}
+                                className={`entry-modal-checkDiv ${
+                                    dontShowChecked && 'entry-modal-checked'
+                                }`}
                                 style={{
                                     width: 18,
                                     height: 18,

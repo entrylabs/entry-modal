@@ -9,6 +9,9 @@ const withReactModal = (WrappedComponent) => {
             super(props);
             this.el = document.createElement('div');
             this.el.className = 'entry-modal-modal';
+            this.state = {
+                isShow: true,
+            };
         }
 
         componentDidMount() {
@@ -20,9 +23,20 @@ const withReactModal = (WrappedComponent) => {
         }
 
         render() {
+            const { isShow } = this.state;
             return ReactDOM.createPortal(
                 <div className={'entry-modal-box'}>
-                    <WrappedComponent {...this.props} />
+                    {isShow && (
+                        <WrappedComponent
+                            {...this.props}
+                            onEvent={(event) => {
+                                this.setState({
+                                    isShow: false,
+                                });
+                                this.onEvent(event);
+                            }}
+                        />
+                    )}
                 </div>,
                 this.el
             );
