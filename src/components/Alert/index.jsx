@@ -48,7 +48,7 @@ class Alert extends Component {
     handleButtonClick = (event) => {
         const { onEvent } = this.props;
         if (onEvent) {
-            onEvent();
+            onEvent(event === 'ok');
         }
     };
 
