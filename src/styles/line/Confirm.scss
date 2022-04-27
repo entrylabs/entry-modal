@@ -71,29 +71,34 @@
                 min-width: 1px;
             }
         }
-
-        .button {
-            display: inline-block;
-            width: 105px;
-            height: 40px;
-            margin: 29px 10px 30px;
-            border-radius: 3px;
-            border: solid 1px #1c8850;
-            color: #fff;
-            background-color: #1c8850;
-            text-align: center;
-            line-height: 40px;
-            font-size: 16px;
-            cursor: pointer;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        .cancelButton {
-            background-color: #d8d8d8;
-            border: solid 1px #9b9b9b;
-            color: #3b3b3b;
+        .button-group {
+            display: flex;
+            .button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-bottom: 2px;
+                width: 146px;
+                height: 48px;
+                margin: 30px 4.5px 40px;
+                border-radius: 6px;
+                border: solid 1px #1c8850;
+                color: #fff;
+                background-color: #1c8850;
+                text-align: center;
+                line-height: 40px;
+                font-size: 16px;
+                cursor: pointer;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            .cancelButton {
+                background-color: #d8d8d8;
+                border: solid 1px #1c8850;
+                color: #1c8850;
+            }
         }
     }
 }
