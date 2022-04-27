@@ -47,8 +47,14 @@ class Alert extends Component {
 
     handleButtonClick = (event) => {
         const { onEvent } = this.props;
-        if (onEvent) {
-            onEvent(event === 'ok');
+        const { dontShowChecked } = this.state;
+        if (!onEvent) {
+            return;
+        }
+        if (event === 'ok') {
+            onEvent({ dontShowChecked });
+        } else {
+            onEvent(false);
         }
     };
 
