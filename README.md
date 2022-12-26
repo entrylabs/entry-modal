@@ -35,7 +35,7 @@ const { Alert, Confirm, Prompt } = require('@entrylabs/modal');
 ```html
 <link rel="stylesheet" href="{prefix}/entry/entry-modal.css" />
 <script src="{prefix}/entry-modal.js"></script>
-const { alert, confirm, prompt } = EntryTool;
+const { alert, confirm, prompt } = EntryModal;
 ```
 
 ### React props
@@ -72,14 +72,14 @@ const { alert, confirm, prompt } = EntryTool;
 
 ### iife props
 ```javascript
-await EntryTool.alert('content', 'title', {
+await EntryModal.alert('content', 'title', {
   positiveButtonText: "positiveButtonText"
 });
-const bool = await EntryTool.confirm('content', 'title', {
+const bool = await EntryModal.confirm('content', 'title', {
   negativeButtonText: "negativeButtonText",
   positiveButtonText: "positiveButtonText"
 });
-const value = await EntryTool.prompt('content', 'defaultValue', 'title', {
+const value = await EntryModal.prompt('content', 'defaultValue', 'title', {
   placeholder: "ppp",
   negativeButtonText: "negativeButtonText",
   positiveButtonText: "positiveButtonText"
