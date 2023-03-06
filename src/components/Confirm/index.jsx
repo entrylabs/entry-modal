@@ -1,59 +1,43 @@
-import React, { Component } from 'react';
+import React, { useEffect, useCallback, useMemo } from 'react';
 import Button from '../common/Button';
 import Title from '../common/Title';
 import { getLang } from '@utils';
+import _get from 'lodash/get';
 
-class Confirm extends Component {
-    constructor(props) {
-        super(props);
-    }
+const Confirm = (props) => {
+    const { content, options = {}, onEvent } = props;
 
-    componentDidMount() {
-        document.body.style.overflow = 'hidden';
-        document.addEventListener('touchmove', this.preventDefault, {
-            passive: false,
-        });
-        document.addEventListener('keyup', this.keyboardEvent);
-    }
+    const { title, negativeButtonText, positiveButtonText } = useMemo(() => {
+        return {
+            title: props.title || getLang('General.confirm_title', 'confirm'),
+            negativeButtonText: options.negativeButtonText || getLang('Buttons.cancel', 'cancel'),
+            positiveButtonText:
+                options.positiveButtonText || getLang('Buttons.course_done', 'cancel'),
+        };
+    }, [props.title, options]);
 
-    componentWillUnmount() {
-        document.body.style.overflow = 'auto';
-        document.removeEventListener('touchmove', this.preventDefault, {
-            passive: false,
-        });
-        document.removeEventListener('keyup', this.keyboardEvent);
-    }
+    const handleButtonClick = useCallback(
+        (event) => {
+            if (!onEvent) {
+                return;
+            }
 
-    keyboardEvent = (e) => {
-        const { keyCode } = e;
-        if (e.repeat) {
-            return;
-        }
-        if (keyCode === 13) {
-            e.preventDefault();
-            this.handleButtonClick('ok');
-        } else if (keyCode === 27) {
-            e.preventDefault();
-            this.handleButtonClick('cancel');
-        }
-    };
+            let value;
+            if (typeof event === 'string') {
+                value = event;
+            } else {
+                value = _get(event, 'target.dataset.value');
+            }
 
-    preventDefault(e) {
-        e.preventDefault();
-    }
+            onEvent(value === 'ok');
+        },
+        [onEvent]
+    );
 
-    handleButtonClick(event) {
-        const { onEvent } = this.props;
-        if (onEvent) {
-            onEvent(event === 'ok');
-        }
-    }
-
-    createContent(content) {
-        let view = null;
+    const renderContent = useMemo(() => {
         try {
             if (typeof content === 'object') {
-                view = (
+                return (
                     <div
                         className={`entry-modal-content entrylmsAlertContent`}
                         dangerouslySetInnerHTML={{
@@ -62,50 +46,75 @@ class Confirm extends Component {
                     />
                 );
             } else if (typeof content === 'string') {
-                view = <div>{content}</div>;
+                return <div>{content}</div>;
             }
-        } finally {
-            return view;
+        } catch (e) {
+            return null;
         }
-    }
+    }, []);
 
-    render() {
-        const {
-            title = getLang('General.confirm_title', 'confirm'),
-            content,
-            options = {},
-        } = this.props;
-        const {
-            negativeButtonText = getLang('Buttons.cancel', 'cancel'),
-            positiveButtonText = getLang('Buttons.course_done', 'ok'),
-        } = options;
-        return (
-            <div className={'entry-modal-confirm'}>
-                <Title
-                    className={'entry-modal-title'}
-                    isClose
-                    onClose={() => this.handleButtonClick('close')}
-                >
-                    {title}
-                </Title>
-                <div className={'entry-modal-contentView'}>
-                    <div className={'entry-modal-content'}>{this.createContent(content)}</div>
-                    <div className={'entry-modal-button-group'}>
-                        <Button
-                            className={`entry-modal-button entry-modal-cancelButton`}
-                            text={negativeButtonText}
-                            onClick={() => this.handleButtonClick('cancel')}
-                        />
-                        <Button
-                            className={'entry-modal-button'}
-                            text={positiveButtonText}
-                            onClick={() => this.handleButtonClick('ok')}
-                        />
-                    </div>
+    const keyboardEvent = useCallback((event) => {
+        const { keyCode } = event;
+        if (event.repeat) {
+            return;
+        }
+        if (keyCode === 13) {
+            event.preventDefault();
+            handleButtonClick('ok');
+        } else if (keyCode === 27) {
+            event.preventDefault();
+            handleButtonClick('close');
+        }
+    }, []);
+
+    const preventDefault = useCallback((event) => {
+        event.preventDefault();
+    }, []);
+
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        document.addEventListener('keydown', keyboardEvent);
+        document.addEventListener('touchmove', preventDefault, {
+            passive: false,
+        });
+        return () => {
+            document.body.style.overflow = 'auto';
+            document.removeEventListener('keydown', keyboardEvent);
+            document.removeEventListener('touchmove', preventDefault, {
+                passive: false,
+            });
+        };
+    }, [keyboardEvent, preventDefault]);
+
+    return (
+        <div className={'entry-modal-confirm'}>
+            <Title
+                className={'entry-modal-title'}
+                isClose
+                onClose={handleButtonClick}
+                closeBtnValue="close"
+            >
+                {title}
+            </Title>
+            <div className={'entry-modal-contentView'}>
+                <div className={'entry-modal-content'}>{renderContent}</div>
+                <div className={'entry-modal-button-group'}>
+                    <Button
+                        className={`entry-modal-button entry-modal-cancelButton`}
+                        text={negativeButtonText}
+                        onClick={handleButtonClick}
+                        btnValue={'cancel'}
+                    />
+                    <Button
+                        className={'entry-modal-button'}
+                        text={positiveButtonText}
+                        onClick={handleButtonClick}
+                        btnValue={'ok'}
+                    />
                 </div>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
 export default Confirm;

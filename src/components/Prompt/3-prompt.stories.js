@@ -16,6 +16,9 @@ export const ToStorybook = () => (
             positiveButtonText: '확인하기',
             negativeButtonText: '취소하기',
         }}
+        onEvent={(v) => {
+            console.log(v);
+        }}
     />
 );
 

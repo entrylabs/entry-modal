@@ -1,68 +1,53 @@
-import React, { Component } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Button from '../common/Button';
 import Title from '../common/Title';
 import { getLang } from '@utils';
+import _get from 'lodash/get';
 
-class Alert extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            dontShowChecked: false,
-        };
-    }
+const Alert = (props) => {
+    const { content, options = {}, onEvent } = props;
+    const [dontShowChecked, setDontShowChecked] = useState(false);
 
-    componentDidMount() {
-        document.body.style.overflow = 'hidden';
-        document.addEventListener('keydown', this.keyboardEvent);
-        document.addEventListener('touchmove', this.preventDefault, {
-            passive: false,
-        });
-    }
-
-    componentWillUnmount() {
-        document.body.style.overflow = 'auto';
-        document.removeEventListener('keydown', this.keyboardEvent);
-        document.removeEventListener('touchmove', this.preventDefault, {
-            passive: false,
-        });
-    }
-
-    keyboardEvent = (e) => {
-        const { keyCode } = e;
-        if (e.repeat) {
+    const keyboardEvent = useCallback((event) => {
+        const { keyCode } = event;
+        if (event.repeat) {
             return;
         }
         if (keyCode === 13) {
-            e.preventDefault();
-            this.handleButtonClick('ok');
+            event.preventDefault();
+            handleButtonClick('ok');
         } else if (keyCode === 27) {
-            e.preventDefault();
-            this.handleButtonClick('close');
+            event.preventDefault();
+            handleButtonClick('close');
         }
-    };
+    }, []);
 
-    preventDefault(e) {
-        e.preventDefault();
-    }
+    const preventDefault = useCallback((event) => {
+        event.preventDefault();
+    }, []);
 
-    handleButtonClick = (event) => {
-        const { onEvent } = this.props;
-        const { dontShowChecked } = this.state;
-        if (!onEvent) {
-            return;
-        }
-        if (event === 'ok') {
-            onEvent({ dontShowChecked });
-        } else {
-            onEvent(false);
-        }
-    };
+    const {
+        title,
+        positiveButtonText,
+        positiveButtonStyle,
+        withDontShowAgain,
+        withDontShowAgainText,
+    } = useMemo(() => {
+        return {
+            title: props.title || getLang('General.alert_title', 'alert'),
+            positiveButtonText: options.positiveButtonText || getLang('Buttons.course_done', 'ok'),
+            positiveButtonStyle: options.positiveButtonStyle || {},
+            withDontShowAgain: options.withDontShowAgain || false,
+            withDontShowAgainText:
+                options.withDontShowAgainText ||
+                getLang('General.dont_show_again', 'don`t show again'),
+        };
+    }, [props.title, options]);
 
-    createContent(content) {
-        let view = null;
+    const renderContent = useMemo(() => {
         try {
             if (typeof content === 'object') {
-                view = (
+                return (
                     <div
                         className={`entry-modal-content entrylmsAlertContent`}
                         dangerouslySetInnerHTML={{
@@ -71,74 +56,93 @@ class Alert extends Component {
                     />
                 );
             } else if (typeof content === 'string') {
-                view = <div>{content}</div>;
+                return <div>{content}</div>;
             }
-        } finally {
-            return view;
+        } catch {
+            return null;
         }
-    }
+    }, [content]);
 
-    handleDontShowChecked() {
-        const { dontShowChecked } = this.state;
-        this.setState({
-            dontShowChecked: !dontShowChecked,
+    const handleButtonClick = useCallback(
+        (event) => {
+            if (!onEvent) {
+                return;
+            }
+
+            let value;
+            if (typeof event === 'string') {
+                value = event;
+            } else {
+                value = _get(event, 'target.dataset.value');
+            }
+
+            if (value === 'ok') {
+                if (withDontShowAgain) {
+                    onEvent({ dontShowChecked });
+                } else {
+                    onEvent(true);
+                }
+            } else {
+                onEvent(false);
+            }
+        },
+        [onEvent, withDontShowAgain, dontShowChecked]
+    );
+
+    const handleDontShowChecked = useCallback(() => {
+        setDontShowChecked(!dontShowChecked);
+    }, [dontShowChecked]);
+
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        document.addEventListener('keydown', keyboardEvent);
+        document.addEventListener('touchmove', preventDefault, {
+            passive: false,
         });
-    }
+        return () => {
+            document.body.style.overflow = 'auto';
+            document.removeEventListener('keydown', keyboardEvent);
+            document.removeEventListener('touchmove', preventDefault, {
+                passive: false,
+            });
+        };
+    }, [keyboardEvent, preventDefault]);
 
-    render() {
-        const {
-            title = getLang('General.alert_title', 'alert'),
-            content,
-            options = {},
-        } = this.props;
-        const {
-            positiveButtonText = getLang('Buttons.course_done', 'ok'),
-            positiveButtonStyle = {},
-            withDontShowAgain = false,
-        } = options;
-        const { dontShowChecked } = this.state;
-        return (
-            <div className={'entry-modal-alert'}>
-                <Title
-                    className={'entry-modal-title'}
-                    isClose
-                    onClose={() => this.handleButtonClick('close')}
-                >
-                    {title}
-                </Title>
-                <div className={'entry-modal-contentView'}>
-                    <div className={'entry-modal-content'}>{this.createContent(content)}</div>
-                    <Button
-                        className={'entry-modal-button'}
-                        text={positiveButtonText}
-                        style={positiveButtonStyle}
-                        onClick={() => this.handleButtonClick('ok')}
-                    />
-                    {withDontShowAgain && (
+    return (
+        <div className={'entry-modal-alert'}>
+            <Title
+                className={'entry-modal-title'}
+                isClose
+                onClose={handleButtonClick}
+                btnValue={'close'}
+            >
+                {title}
+            </Title>
+            <div className={'entry-modal-contentView'}>
+                <div className={'entry-modal-content'}>{renderContent}</div>
+                <Button
+                    className={'entry-modal-button'}
+                    text={positiveButtonText}
+                    style={positiveButtonStyle}
+                    onClick={handleButtonClick}
+                    btnValue={'ok'}
+                />
+                {withDontShowAgain && (
+                    <div className={'entry-modal-checkBox'} onClick={handleDontShowChecked}>
                         <div
-                            className={'entry-modal-checkBox'}
-                            onClick={() => {
-                                this.handleDontShowChecked();
+                            className={`entry-modal-checkDiv ${
+                                dontShowChecked && 'entry-modal-checked'
+                            }`}
+                            style={{
+                                width: 18,
+                                height: 18,
                             }}
-                        >
-                            <div
-                                className={`entry-modal-checkDiv ${
-                                    dontShowChecked && 'entry-modal-checked'
-                                }`}
-                                style={{
-                                    width: 18,
-                                    height: 18,
-                                }}
-                            />
-                            <span className={'entry-modal-label'}>
-                                {getLang('General.dont_show_again')}
-                            </span>
-                        </div>
-                    )}
-                </div>
+                        />
+                        <span className={'entry-modal-label'}>{withDontShowAgainText}</span>
+                    </div>
+                )}
             </div>
-        );
-    }
-}
-
+        </div>
+    );
+};
 export default Alert;

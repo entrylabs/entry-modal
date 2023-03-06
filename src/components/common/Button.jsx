@@ -1,52 +1,45 @@
-import React, { Component } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
-class Button extends Component {
-    constructor(props) {
-        super(props);
-        this.handleOnClick = this.handleOnClick.bind(this);
-        this.handleOnMouseDown = this.handleOnMouseDown.bind(this);
-    }
+const Button = (props) => {
+    const { style, className, onClick, onMouseDown, children, text, btnValue } = props;
 
-    getButtonClassName() {
-        return `entry-modal-button ${this.props.className}`;
-    }
+    const handleOnClick = useCallback(
+        (event) => {
+            if (onClick) {
+                onClick(event);
+            }
+        },
+        [onClick]
+    );
 
-    handleOnClick(e) {
-        const { onClick } = this.props;
-        if (onClick) {
-            onClick(e);
+    const handleOnMouseDown = useCallback(
+        (event) => {
+            if (onMouseDown) {
+                onMouseDown(event);
+            }
+        },
+        [onMouseDown]
+    );
+
+    const buttonContent = useMemo(() => {
+        if (children) {
+            return children;
+        } else if (text) {
+            return text;
         }
-    }
+        return null;
+    }, [children, text]);
 
-    handleOnMouseDown(e) {
-        const { onMouseDown } = this.props;
-        if (onMouseDown) {
-            onMouseDown(e);
-        }
-    }
-    createButtonContent() {
-        let content = null;
-        if (this.props.children) {
-            content = this.props.children;
-        } else if (this.props.text) {
-            content = this.props.text;
-        }
-        return content;
-    }
-
-    render() {
-        const { style } = this.props;
-        return (
-            <div
-                style={style}
-                className={this.getButtonClassName()}
-                onClick={this.handleOnClick}
-                onMouseDown={this.handleOnMouseDown}
-            >
-                {this.createButtonContent()}
-            </div>
-        );
-    }
-}
-
+    return (
+        <div
+            style={style}
+            className={`entry-modal-button ${className}`}
+            onClick={handleOnClick}
+            onMouseDown={handleOnMouseDown}
+            data-value={btnValue}
+        >
+            {buttonContent}
+        </div>
+    );
+};
 export default Button;
