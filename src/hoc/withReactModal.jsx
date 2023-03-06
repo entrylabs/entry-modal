@@ -33,7 +33,9 @@ const withReactModal = (WrappedComponent) => {
                                 this.setState({
                                     isShow: false,
                                 });
-                                this.onEvent(event);
+                                if (this.onEvent) {
+                                    this.onEvent(event);
+                                }
                             }}
                         />
                     )}
