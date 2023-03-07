@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import Button from '../common/Button';
-import Title from '../common/Title';
+import Button from '../common/Button.jsx';
+import Title from '../common/Title.jsx';
 import { getLang } from '../../utils/index';
 import { get as _get } from 'lodash-es';
 
@@ -145,10 +145,4 @@ const Alert = (props) => {
         </div>
     );
 };
-// export default Alert;
-
-const A = () => {
-    const [dontShowChecked, setDontShowChecked] = useState(false);
-    return <>b</>;
-};
-export default A;
+export default Alert;

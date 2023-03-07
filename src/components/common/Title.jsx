@@ -1,5 +1,5 @@
 import React, { Component, useMemo } from 'react';
-import Button from './Button';
+import Button from './Button.jsx';
 
 const Title = (props) => {
     const {

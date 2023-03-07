@@ -1,3 +1,3 @@
-import withReactModal from '@hoc/withReactModal';
-import Alert from '@components/Alert';
+import withReactModal from '@hoc/withReactModal.jsx';
+import Alert from '@components/Alert/index.jsx';
 export default withReactModal(Alert);
