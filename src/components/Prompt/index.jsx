@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import Button from '../common/Button';
 import Title from '../common/Title';
 import { getLang } from '@utils';
-import _get from 'lodash/get';
+import { get as _get } from 'lodash-es';
 
 const Prompt = (props) => {
     const { defaultValue, content, options = {}, onEvent } = props;

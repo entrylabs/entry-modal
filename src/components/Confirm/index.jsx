@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useMemo } from 'react';
 import Button from '../common/Button';
 import Title from '../common/Title';
 import { getLang } from '@utils';
-import _get from 'lodash/get';
+import { get as _get } from 'lodash-es';
 
 const Confirm = (props) => {
     const { content, options = {}, onEvent } = props;
