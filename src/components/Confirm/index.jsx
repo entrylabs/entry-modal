@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useMemo } from 'react';
-import Button from '../common/Button';
-import Title from '../common/Title';
+import Button from '../common/Button.jsx';
+import Title from '../common/Title.jsx';
 import { getLang } from '../../utils/index';
 import { get as _get } from 'lodash-es';
 
