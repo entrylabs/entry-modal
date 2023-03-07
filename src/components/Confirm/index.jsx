@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useMemo } from 'react';
 import Button from '../common/Button';
 import Title from '../common/Title';
-import { getLang } from '@utils';
+import { getLang } from '../../utils/index';
 import { get as _get } from 'lodash-es';
 
 const Confirm = (props) => {
