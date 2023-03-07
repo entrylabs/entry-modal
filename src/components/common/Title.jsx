@@ -1,25 +1,34 @@
-import React, { Component } from 'react';
+import React, { Component, useMemo } from 'react';
 import Button from './Button';
 
-class Title extends Component {
-    createCloseButton() {
-        let button = null;
+const Title = (props) => {
+    const {
+        className = 'entry-modal-entryLmsTitle',
+        children,
+        isClose,
+        onClose,
+        closeBtnValue = 'close',
+    } = props;
 
-        if (this.props.isClose !== false) {
-            button = <Button className="entry-modal-entryLmsClose" onClick={this.props.onClose} />;
+    const closeButton = useMemo(() => {
+        if (isClose !== false) {
+            return (
+                <Button
+                    className="entry-modal-entryLmsClose"
+                    onClick={onClose}
+                    btnValue={closeBtnValue}
+                />
+            );
         }
+        return null;
+    }, [isClose, onClose]);
 
-        return button;
-    }
-
-    render() {
-        return (
-            <div className={this.props.className || 'entry-modal-entryLmsTitle'}>
-                <div className="entry-modal-entryLmsText">{this.props.children}</div>
-                {this.createCloseButton()}
-            </div>
-        );
-    }
-}
+    return (
+        <div className={className}>
+            <div className="entry-modal-entryLmsText">{children}</div>
+            {closeButton}
+        </div>
+    );
+};
 
 export default Title;

@@ -14,14 +14,14 @@
         <button onclick="handleConfirm()">Confirm</button>
         <button onclick="handlePrompt()">Prompt</button>
         <script>
-            function handleAlert() {
-                EntryModal.alert('test');
+            async function handleAlert() {
+                console.log(await EntryModal.alert('alet test'));
             }
-            function handleConfirm() {
-                EntryModal.confirm('test');
+            async function handleConfirm() {
+                console.log(await EntryModal.confirm('confirm test'));
             }
-            function handlePrompt() {
-                EntryModal.prompt('test');
+            async function handlePrompt() {
+                console.log(await EntryModal.prompt('prompt test'));
             }
         </script>
     </body>
