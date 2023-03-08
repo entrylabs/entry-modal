@@ -41,6 +41,7 @@ const { alert, confirm, prompt } = EntryModal;
 ### React props
 ``` javascript
 <Alert
+  isShow={true}
   content="content"
   title="title"
   onEvent={() => {}}
@@ -49,6 +50,7 @@ const { alert, confirm, prompt } = EntryModal;
   }}
 />
 <Confirm
+  isShow={true}
   content="content"
   title="title"
   onEvent={() => {}}
@@ -58,6 +60,7 @@ const { alert, confirm, prompt } = EntryModal;
   }}
 />
 <Prompt
+  isShow={true}
   content="content"
   defaultValue="defaultValue"
   title="title"
