@@ -92,6 +92,6 @@ yarn-error.log*
 /stories
 .prettierrc
 .jsconfig.json
-webpack.config.js
+rollup.config.js
 yarn.lock
 .stories.js

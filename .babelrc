@@ -20,7 +20,7 @@
         ]
     ],
     "presets": [
-        ["@babel/react", { "modules": false }],
+        ["@babel/react", { "modules": false, "useBuiltIns": false }],
         [
             "@babel/env",
             {

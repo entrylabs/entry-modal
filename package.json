@@ -5,11 +5,12 @@
     "main": "lib/component.js",
     "module": "lib/component.js",
     "jsnext:main": "lib/component.js",
+    "type": "module",
     "scripts": {
-        "build:dev": "webpack --mode development",
-        "build:prod": "cross-env NODE_ENV=production webpack --mode production",
-        "build:esm": "cross-env NODE_ENV=production npx babel src --out-dir lib",
-        "build": "rimraf dist&&rimraf lib&&npm run build:prod&&npm run build:esm",
+        "dev": "rollup -cw",
+        "build:css": "cross-env NODE_ENV=production node exportStyle",
+        "build:script": "cross-env NODE_ENV=production rollup -c",
+        "build": "rimraf dist&&rimraf lib&&npm run build:script&&npm run build:css",
         "test": "echo \"Error: no test specified\" && exit 1",
         "prepublish": "npm run build",
         "storybook": "start-storybook -p 6006",
@@ -45,34 +46,35 @@
         "@babel/preset-env": "^7.15.8",
         "@babel/preset-react": "^7.14.5",
         "@babel/runtime": "^7.15.4",
-        "@storybook/addon-actions": "^5.3.21",
-        "@storybook/addon-links": "^5.3.21",
-        "@storybook/addons": "^5.3.21",
-        "@storybook/react": "^6.5.16",
+        "@rollup/plugin-babel": "^6.0.3",
+        "@rollup/plugin-commonjs": "^24.0.1",
+        "@rollup/plugin-node-resolve": "^15.0.1",
         "babel-loader": "^8.2.2",
         "babel-plugin-module-resolver": "^5.0.0",
         "caniuse-lite": "^1.0.30001460",
         "cross-env": "^7.0.3",
         "css-loader": "^3.6.0",
-        "mini-css-extract-plugin": "^0.9.0",
+        "postcss": "^8.4.21",
+        "postcss-base64": "^0.7.1",
         "postcss-loader": "^3.0.0",
         "postcss-prefixer": "^2.1.3",
-        "react": "^16.14.0",
-        "react-dom": "^16.14.0",
-        "safe-umd-webpack-plugin": "^4.0.0",
+        "rollup": "^3.18.0",
+        "rollup-plugin-typescript2": "^0.34.1",
         "sass": "^1.58.3",
         "sass-loader": "^8.0.2",
         "style-loader": "^1.3.0",
-        "url-loader": "^3.0.0",
-        "webpack": "^4.46.0",
-        "webpack-cli": "^3.3.12",
-        "webpack-fix-style-only-entries": "^0.4.0"
+        "url-loader": "^3.0.0"
     },
     "dependencies": {
         "lodash-es": "^4.17.21",
         "rimraf": "^3.0.2"
     },
     "peerDependencies": {
-        "react": "16.x"
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "resolutions": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
     }
 }

@@ -1,49 +1,37 @@
-import React, { Component } from 'react';
+import React, { Fragment, Component, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 
-const modalRoot = document.querySelector('body');
+const withReactModal = (WrappedComponent) => (props) => {
+    const { isShow } = props;
+    const [modalEl, setModalEl] = useState(null);
 
-const withReactModal = (WrappedComponent) => {
-    return class extends Component {
-        constructor(props) {
-            super(props);
-            this.el = document.createElement('div');
-            this.el.className = 'entry-modal-modal';
-            this.state = {
-                isShow: true,
+    useEffect(() => {
+        const modalRoot = document.querySelector('body');
+        if (!modalEl) {
+            const el = document.createElement('div');
+            el.className = 'entry-modal-modal';
+            setModalEl(el);
+        }
+        if (isShow) {
+            modalRoot.appendChild(modalEl);
+            return () => {
+                if (modalEl) {
+                    modalRoot.removeChild(modalEl);
+                }
             };
         }
+    }, [isShow, modalEl]);
 
-        componentDidMount() {
-            modalRoot.appendChild(this.el);
-        }
+    if (!isShow || !modalEl) {
+        return null;
+    }
 
-        componentWillUnmount() {
-            modalRoot.removeChild(this.el);
-        }
-
-        render() {
-            const { isShow } = this.state;
-            return ReactDOM.createPortal(
-                <div className={'entry-modal-box'}>
-                    {isShow && (
-                        <WrappedComponent
-                            {...this.props}
-                            onEvent={(event) => {
-                                this.setState({
-                                    isShow: false,
-                                });
-                                if (this.onEvent) {
-                                    this.onEvent(event);
-                                }
-                            }}
-                        />
-                    )}
-                </div>,
-                this.el
-            );
-        }
-    };
+    return ReactDOM.createPortal(
+        <div className={'entry-modal-box'}>
+            <WrappedComponent {...props} />
+        </div>,
+        modalEl
+    );
 };
 
 export default withReactModal;

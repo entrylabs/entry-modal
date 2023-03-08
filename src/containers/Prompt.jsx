@@ -1,3 +1,3 @@
-import withReactModal from '@hoc/withReactModal';
-import Prompt from '@components/Prompt';
+import withReactModal from '@hoc/withReactModal.jsx';
+import Prompt from '@components/Prompt/index.jsx';
 export default withReactModal(Prompt);

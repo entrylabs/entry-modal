@@ -1,6 +1,5 @@
-import Alert from '@containers/Alert';
-import Confirm from '@containers/Confirm';
-import Prompt from '@containers/Prompt';
+import Alert from '@containers/Alert.jsx';
+import Confirm from '@containers/Confirm.jsx';
+import Prompt from '@containers/Prompt.jsx';
 
 export { Alert, Confirm, Prompt };
-export default { Alert, Confirm, Prompt };
