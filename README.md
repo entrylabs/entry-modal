@@ -1,6 +1,6 @@
 # entry-modal
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/783a03f8ddd54c6784bcaa3bd01c90d6)](https://www.codacy.com/gh/entrylabs/entry-modal?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=entrylabs/entry-modal&amp;utm_campaign=Badge_Grade)
-[![npm version](https://badge.fury.io/js/%40entrylabs%2Fmodal.svg)](https://badge.fury.io/js/%40entrylabs%2Fmodal)
+[![npm version](https://badge.fury.io/js/%40entrylabs%2Fmodal.svg?v=1.3.3)](https://badge.fury.io/js/%40entrylabs%2Fmodal)
 
 ## Install
 ### Using npm
