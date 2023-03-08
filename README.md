@@ -14,7 +14,7 @@ $ yarn add @entrylabs/modal
 
 ## Example
 ### Codesandbox
-- React Component : https://codesandbox.io/s/entry-modal-react-owr04
+- React Component : https://codesandbox.io/s/entry-modal-react-couo2d
 - IIFE : https://codesandbox.io/s/entry-modal-iife-rf1rl
 
 ## Usage
