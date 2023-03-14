@@ -9,7 +9,7 @@ const inputSrc = [
             input: './src/index.jsx',
             output: {
                 file: 'dist/entry-modal.js',
-                format: 'iife',
+                format: 'umd',
                 sourcemap: true,
                 name: 'EntryModal',
             },
