@@ -14,7 +14,7 @@ export const progress = withDefaultModal(Progress, [
     'title',
     'stepTitle',
     'contentImage',
-    'contentText',
+    'content',
     'buttons',
     'options',
 ]);

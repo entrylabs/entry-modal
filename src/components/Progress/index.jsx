@@ -13,7 +13,7 @@ const Progress = (props) => {
             select: 0,
         },
         contentImage,
-        contentText,
+        content,
         buttons = [
             {
                 text: '',
@@ -120,16 +120,16 @@ const Progress = (props) => {
                     titles={stepTitle.titles}
                     select={stepTitle.select}
                 />
-                {/* <div className={'entry-modal-content'}>{renderContent}</div> */}
+                <div className={'entry-modal-content'}>{renderContent}</div>
                 <div className={'entry-modal-button-group'}>
                     <Button
-                        className={`entry-modal-button entry-modal-cancelButton`}
+                        className={`entry-modal-button`}
                         text={buttons[0].text}
                         onClick={handleButtonClick}
                         btnValue={'cancel'}
                     />
                     {/* <Button
-                        className={'entry-modal-button'}
+                        className={'entry-modal-button entry-modal-cancelButton'}
                         text={positiveButtonText}
                         onClick={handleButtonClick}
                         btnValue={'ok'}
