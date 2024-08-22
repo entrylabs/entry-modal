@@ -22,7 +22,7 @@ const Progress = (props) => {
                 btnValue: 'ok',
             },
         ],
-        options = {},
+        options = { btnAlignCol: false },
         onEvent,
     } = props;
 
@@ -122,7 +122,11 @@ const Progress = (props) => {
                 />
                 <div className={'entry-modal-content'}>{renderContent}</div>
                 <div className={'entry-modal-button-group'}>
-                    <Buttons buttonInfos={buttonInfos} defaultOnClick={handleButtonClick} />
+                    <Buttons
+                        buttonInfos={buttonInfos}
+                        defaultOnClick={handleButtonClick}
+                        alignCol={options.btnAlignCol}
+                    />
                 </div>
             </div>
         </div>
