@@ -15,7 +15,7 @@ export const progress = withDefaultModal(Progress, [
     'stepTitle',
     'contentImage',
     'content',
-    'buttons',
+    'buttonInfos',
     'options',
 ]);
 export const prompt = withDefaultModal(Prompt, ['content', 'defaultValue', 'title', 'options']);

@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useMemo } from 'react';
-import Button from '../common/Button.jsx';
+import Buttons from '../common/Buttons.jsx';
 import Title from '../common/Title.jsx';
 import StepTitle from '../common/StepTitle.jsx';
 import { getLang } from '../../utils/index';
@@ -14,11 +14,12 @@ const Progress = (props) => {
         },
         contentImage,
         content,
-        buttons = [
+        buttonInfos = [
             {
                 text: '',
-                onClick: () => {},
-                style: 'positive',
+                onClick,
+                isNegative: false,
+                btnValue: 'ok',
             },
         ],
         options = {},
@@ -39,7 +40,6 @@ const Progress = (props) => {
             if (!onEvent) {
                 return;
             }
-
             let value;
             if (typeof event === 'string') {
                 value = event;
@@ -47,7 +47,7 @@ const Progress = (props) => {
                 value = _get(event, 'target.dataset.value');
             }
 
-            onEvent(value === 'ok');
+            onEvent(value);
         },
         [onEvent]
     );
@@ -122,18 +122,7 @@ const Progress = (props) => {
                 />
                 <div className={'entry-modal-content'}>{renderContent}</div>
                 <div className={'entry-modal-button-group'}>
-                    <Button
-                        className={`entry-modal-button`}
-                        text={buttons[0].text}
-                        onClick={handleButtonClick}
-                        btnValue={'cancel'}
-                    />
-                    {/* <Button
-                        className={'entry-modal-button entry-modal-cancelButton'}
-                        text={positiveButtonText}
-                        onClick={handleButtonClick}
-                        btnValue={'ok'}
-                    /> */}
+                    <Buttons buttonInfos={buttonInfos} defaultOnClick={handleButtonClick} />
                 </div>
             </div>
         </div>
