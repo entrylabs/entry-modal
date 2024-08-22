@@ -10,7 +10,14 @@ import PromptConteiner from '@containers/Prompt.jsx';
 
 export const alert = withDefaultModal(Alert, ['content', 'title', 'options']);
 export const confirm = withDefaultModal(Confirm, ['content', 'title', 'options']);
-export const progress = withDefaultModal(Progress, ['content', 'title', 'options']);
+export const progress = withDefaultModal(Progress, [
+    'title',
+    'stepTitle',
+    'contentImage',
+    'contentText',
+    'buttons',
+    'options',
+]);
 export const prompt = withDefaultModal(Prompt, ['content', 'defaultValue', 'title', 'options']);
 
 export const Component = {

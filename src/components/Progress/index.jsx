@@ -1,20 +1,38 @@
 import React, { useEffect, useCallback, useMemo } from 'react';
 import Button from '../common/Button.jsx';
 import Title from '../common/Title.jsx';
+import StepTitle from '../common/StepTitle.jsx';
 import { getLang } from '../../utils/index';
 import { get as _get } from 'lodash-es';
 
 const Progress = (props) => {
-    const { content, options = {}, onEvent } = props;
+    const {
+        title,
+        stepTitle = {
+            titles: [],
+            select: 0,
+        },
+        contentImage,
+        contentText,
+        buttons = [
+            {
+                text: '',
+                onClick: () => {},
+                style: 'positive',
+            },
+        ],
+        options = {},
+        onEvent,
+    } = props;
 
-    const { title, negativeButtonText, positiveButtonText } = useMemo(() => {
-        return {
-            title: props.title || getLang('General.progress_title', 'progress'),
-            negativeButtonText: options.negativeButtonText || getLang('Buttons.cancel', 'cancel'),
-            positiveButtonText:
-                options.positiveButtonText || getLang('Buttons.course_done', 'cancel'),
-        };
-    }, [props.title, options]);
+    // const { title, negativeButtonText, positiveButtonText } = useMemo(() => {
+    //     return {
+    //         title: props.title || getLang('General.progress_title', 'progress'),
+    //         negativeButtonText: options.negativeButtonText || getLang('Buttons.cancel', 'cancel'),
+    //         positiveButtonText:
+    //             options.positiveButtonText || getLang('Buttons.course_done', 'cancel'),
+    //     };
+    // }, [props.title, options]);
 
     const handleButtonClick = useCallback(
         (event) => {
@@ -97,20 +115,25 @@ const Progress = (props) => {
                 {title}
             </Title>
             <div className={'entry-modal-contentView'}>
-                <div className={'entry-modal-content'}>{renderContent}</div>
+                <StepTitle
+                    className={'entry-modal-stepTitle'}
+                    titles={stepTitle.titles}
+                    select={stepTitle.select}
+                />
+                {/* <div className={'entry-modal-content'}>{renderContent}</div> */}
                 <div className={'entry-modal-button-group'}>
                     <Button
                         className={`entry-modal-button entry-modal-cancelButton`}
-                        text={negativeButtonText}
+                        text={buttons[0].text}
                         onClick={handleButtonClick}
                         btnValue={'cancel'}
                     />
-                    <Button
+                    {/* <Button
                         className={'entry-modal-button'}
                         text={positiveButtonText}
                         onClick={handleButtonClick}
                         btnValue={'ok'}
-                    />
+                    /> */}
                 </div>
             </div>
         </div>

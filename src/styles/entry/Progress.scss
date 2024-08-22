@@ -87,6 +87,37 @@
             }
         }
 
+        .stepTitle {
+            display: flex;
+            margin: 15px 0px 15px 0px;
+
+            .stepTitle-title {
+                height: 24px;
+                margin: 14px;
+                font-family: NanumGothicOTF;
+                font-size: 18px;
+                font-weight: bold;
+                font-stretch: normal;
+                font-style: normal;
+                font-weight: bold;
+                line-height: 1.33;
+                letter-spacing: -0.64px;
+                text-align: center;
+                color: #979797;
+            }
+            
+            .stepTitle-selected {
+                color: #4f80ff;
+            }
+
+            .stepTitle-divider {
+                margin-top: 14px;
+                width: 2px;
+                height: 20px;
+                background-color: #d8d8d8;
+            }
+        }
+
         .button-group {
             display: flex;
             .button {
