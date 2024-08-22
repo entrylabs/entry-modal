@@ -1,5 +1,6 @@
 import EntryAlertStyle from '@styles/entry/Alert.scss';
 import EntryConfirmStyle from '@styles/entry/Confirm.scss';
+import EntryProgressStyle from '@styles/entry/Progress.scss';
 import EntryPromptStyle from '@styles/entry/Prompt.scss';
 import LineAlertStyle from '@styles/line/Alert.scss';
 import LineConfirmStyle from '@styles/line/Confirm.scss';
@@ -13,6 +14,7 @@ class Theme {
                 Alert: EntryAlertStyle,
                 Confirm: EntryConfirmStyle,
                 Prompt: EntryPromptStyle,
+                Progress: EntryProgressStyle,
             },
             line: {
                 Alert: LineAlertStyle,
