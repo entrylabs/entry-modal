@@ -1,0 +1,163 @@
+.progress {
+    background: #fff;
+    width: 388px;
+    min-height: 203px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    user-select: none;
+
+    .title {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        background-color: #4f80ff;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+
+        .entryLmsText {
+            display: inline-block;
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            margin: 0px 26px;
+            height: 54px;
+            font-family: NanumGothic;
+            font-size: 20px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 54px;
+            letter-spacing: -0.71px;
+            color: #ffffff;
+        }
+
+        .entryLmsClose {
+            display: inline-block;
+            cursor: pointer;
+            right: 0;
+            margin: 16px 26px 0 0;
+            width: 22px;
+            height: 22px;
+            background-image: url(../../styles/assets/close_icon.svg);
+            background-repeat: no-repeat;
+        }
+    }
+
+    .contentView {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .content {
+            width: 320px;
+            color: #2c313d;
+            font-family: NanumGothicOTF;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.33;
+            letter-spacing: -0.64px;
+            font-size: 18px;
+            text-align: center;
+            overflow: hidden;
+            word-break: break-word;
+            white-space: pre-line;
+        }
+
+        .media {
+            width: 308px;
+            height: 190px;
+            overflow: hidden;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+
+            img {
+                width: auto;
+                height: auto;
+                max-width: 100%;
+                max-height: 100%;
+                min-width: 1px;
+            }
+        }
+
+        .stepTitle {
+            display: flex;
+            margin: 15px 0px 15px 0px;
+
+            .stepTitle-title {
+                height: 24px;
+                margin: 14px;
+                font-family: NanumGothicOTF;
+                font-size: 18px;
+                font-weight: bold;
+                font-stretch: normal;
+                font-style: normal;
+                font-weight: bold;
+                line-height: 1.33;
+                letter-spacing: -0.64px;
+                text-align: center;
+                color: #979797;
+            }
+            
+            .stepTitle-selected {
+                color: #4f80ff;
+            }
+
+            .stepTitle-divider {
+                margin-top: 14px;
+                width: 2px;
+                height: 20px;
+                background-color: #d8d8d8;
+            }
+        }
+
+        .button-group {
+            display: flex;
+
+            .button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-bottom: 2px;
+                width: 146px;
+                height: 48px;
+                margin: 30px 4.5px 40px;
+                border-radius: 6px;
+                border: solid 1px #4f80ff;
+                color: #fff;
+                background-color: #4f80ff;
+                text-align: center;
+                line-height: 40px;
+                font-family: NanumGothic;
+                font-weight: bold;
+                font-size: 14px;
+                font-stretch: normal;
+                font-style: normal;
+                letter-spacing: -0.32px;
+                text-align: center;
+                cursor: pointer;
+            }
+            .cancelButton {
+                background-color: #ffffff;
+                border: solid 2px #4f80ff;
+                color: #4f80ff;
+            }
+
+            .buttons-col {
+                display: table-column;
+                margin: 20px 20px;
+                .button {
+                    margin: 10px;
+                    width: 250px;
+                    height: 48px;
+                }
+            }
+        }
+    }
+}
