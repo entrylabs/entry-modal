@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useMemo, useState } from 'react';
 import Buttons from '../common/Buttons.jsx';
 import Title from '../common/Title.jsx';
 import StepTitle from '../common/StepTitle.jsx';
-import { getLang } from '../../utils/index';
+import ProgressBar from './ProgressBar.jsx';
 import { get as _get } from 'lodash-es';
 
 const Progress = (props) => {
@@ -149,7 +149,7 @@ const Progress = (props) => {
                     select={stepTitle.select}
                 />
                 <div className={'entry-modal-content'}>{renderContent}</div>
-                {percent && <div>{percent}</div>}
+                {percent && <ProgressBar percent={percent} />}
                 <div className={'entry-modal-button-group'}>
                     <Buttons
                         buttonInfos={buttonInfos}

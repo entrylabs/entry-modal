@@ -159,5 +159,52 @@
                 }
             }
         }
+
+        .progressbar-wrapper {
+            position: relative;
+            width: 300px;
+            height: 24px;
+            margin: 25px 0px 40px 0px;
+        }
+
+        .progressbar {
+            position: absolute;
+            appearance: none;
+            width: 300px;
+            height: 24px;
+        }
+
+        .progressbar::-webkit-progress-bar {
+            background: #e8e8e8;
+            border-radius: 14px;
+            border: solid 1px #D5D5D5;
+            overflow: hidden;
+        }
+    
+        .progressbar::-webkit-progress-value {
+            background: #ffb500;
+            border-radius: 14px;
+        }
+
+        .progressbar-text {
+            position: absolute;
+            left: 43%;
+            top: 2px;
+            width: 40px;
+            height: 24px;
+            font-family: NanumGothicOTF;
+            font-size: 14px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.71;
+            letter-spacing: -0.5px;
+            text-align: center;
+            color: #000000;
+        }
+
+        .text-invert {
+            color: #ffffff;
+        }
     }
 }
