@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useMemo } from 'react';
+import React, { useEffect, useCallback, useMemo, useState } from 'react';
 import Buttons from '../common/Buttons.jsx';
 import Title from '../common/Title.jsx';
 import StepTitle from '../common/StepTitle.jsx';
@@ -22,7 +22,10 @@ const Progress = (props) => {
                 btnValue: 'ok',
             },
         ],
-        options = { btnAlignCol: false },
+        options = {
+            btnAlignCol: false,
+            // event: { close, percent }
+        },
         onEvent,
     } = props;
 
@@ -34,6 +37,8 @@ const Progress = (props) => {
     //             options.positiveButtonText || getLang('Buttons.course_done', 'cancel'),
     //     };
     // }, [props.title, options]);
+
+    const [percent, setPercent] = useState(undefined);
 
     const handleButtonClick = useCallback(
         (event) => {
@@ -89,12 +94,35 @@ const Progress = (props) => {
         event.preventDefault();
     }, []);
 
+    const setEntryEvent = () => {
+        if (options && options.event) {
+            const entryAddEventListener = Entry.addEventListener.bind(Entry);
+            const entryRemoveEventListener = Entry.removeEventListener.bind(Entry);
+            const addEventListener = (eventName, func) => {
+                entryRemoveEventListener(eventName, func);
+                entryAddEventListener(eventName, func);
+            };
+
+            if (options.event.close) {
+                addEventListener(options.event.close, () => {
+                    handleButtonClick();
+                });
+            }
+            if (options.event.percent) {
+                addEventListener(options.event.percent, (percent) => {
+                    setPercent(percent);
+                });
+            }
+        }
+    };
+
     useEffect(() => {
         document.body.style.overflow = 'hidden';
         document.addEventListener('keydown', keyboardEvent);
         document.addEventListener('touchmove', preventDefault, {
             passive: false,
         });
+        setEntryEvent();
         return () => {
             document.body.style.overflow = 'auto';
             document.removeEventListener('keydown', keyboardEvent);
@@ -102,7 +130,7 @@ const Progress = (props) => {
                 passive: false,
             });
         };
-    }, [keyboardEvent, preventDefault]);
+    }, [keyboardEvent, preventDefault, options.event]);
 
     return (
         <div className={'entry-modal-progress'}>
@@ -121,6 +149,7 @@ const Progress = (props) => {
                     select={stepTitle.select}
                 />
                 <div className={'entry-modal-content'}>{renderContent}</div>
+                {percent && <div>{percent}</div>}
                 <div className={'entry-modal-button-group'}>
                     <Buttons
                         buttonInfos={buttonInfos}
