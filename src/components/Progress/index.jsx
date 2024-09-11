@@ -149,7 +149,7 @@ const Progress = (props) => {
                     select={stepTitle.select}
                 />
                 <div className={'entry-modal-content'}>{renderContent}</div>
-                {percent && <ProgressBar percent={percent} />}
+                {!!percent && <ProgressBar percent={percent} />}
                 <div className={'entry-modal-button-group'}>
                     <Buttons
                         buttonInfos={buttonInfos}
