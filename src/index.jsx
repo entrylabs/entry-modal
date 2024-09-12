@@ -13,7 +13,7 @@ export const confirm = withDefaultModal(Confirm, ['content', 'title', 'options']
 export const progress = withDefaultModal(Progress, [
     'title',
     'stepTitle',
-    'contentImage',
+    'imageType',
     'content',
     'buttonInfos',
     'options',

@@ -3,6 +3,7 @@ import Buttons from '../common/Buttons.jsx';
 import Title from '../common/Title.jsx';
 import StepTitle from '../common/StepTitle.jsx';
 import ProgressBar from './ProgressBar.jsx';
+import ContentImage from '../common/ContentImage.jsx';
 import { get as _get } from 'lodash-es';
 
 const Progress = (props) => {
@@ -12,7 +13,7 @@ const Progress = (props) => {
             titles: [],
             select: 0,
         },
-        contentImage,
+        imageType, // 'beforeConnect', 'connecting', 'checked'
         content,
         buttonInfos = [
             {
@@ -149,6 +150,9 @@ const Progress = (props) => {
                     select={stepTitle.select}
                 />
                 <div className={'entry-modal-content'}>{renderContent}</div>
+                {!!imageType && typeof imageType === 'string' && (
+                    <ContentImage imageType={imageType} />
+                )}
                 {!!percent && <ProgressBar percent={percent} />}
                 <div className={'entry-modal-button-group'}>
                     <Buttons
