@@ -25,19 +25,13 @@ const Progress = (props) => {
         ],
         options = {
             btnAlignCol: false,
+            // style: { width, height }
+            // INFO: 예외상황은 progressPreset로, 일반적인 상황은 event.percent로 다룬다.
+            // progressPreset: 'full' | 'fail'
             // event: { close, percent }
         },
         onEvent,
     } = props;
-
-    // const { title, negativeButtonText, positiveButtonText } = useMemo(() => {
-    //     return {
-    //         title: props.title || getLang('General.progress_title', 'progress'),
-    //         negativeButtonText: options.negativeButtonText || getLang('Buttons.cancel', 'cancel'),
-    //         positiveButtonText:
-    //             options.positiveButtonText || getLang('Buttons.course_done', 'cancel'),
-    //     };
-    // }, [props.title, options]);
 
     const [percent, setPercent] = useState(undefined);
 
@@ -143,7 +137,10 @@ const Progress = (props) => {
             >
                 {title}
             </Title>
-            <div className={'entry-modal-contentView'}>
+            <div
+                className={'entry-modal-contentView'}
+                style={options?.style ? options.style : null}
+            >
                 <StepTitle
                     className={'entry-modal-stepTitle'}
                     titles={stepTitle.titles}
@@ -153,7 +150,9 @@ const Progress = (props) => {
                 {!!imageType && typeof imageType === 'string' && (
                     <ContentImage imageType={imageType} />
                 )}
-                {!!percent && <ProgressBar percent={percent} />}
+                {(!!percent || options.progressPreset) && (
+                    <ProgressBar percent={percent} preset={options && options.progressPreset} />
+                )}
                 <div className={'entry-modal-button-group'}>
                     <Buttons
                         buttonInfos={buttonInfos}

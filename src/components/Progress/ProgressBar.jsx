@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const ProgressBar = (props) => {
-    const { percent } = props;
-    const roundPercent = Math.round(percent);
+    const { percent, preset = 'default' } = props;
+    const [roundPercent, setRoundPercent] = useState(0);
     const overHalf = roundPercent > 50;
+
+    useEffect(() => {
+        if (preset === 'full') {
+            setRoundPercent(100);
+        } else if (preset === 'fail') {
+            setRoundPercent(Math.round(0));
+        } else {
+            setRoundPercent(Math.round(percent));
+        }
+    }, [preset, percent]);
 
     return (
         <div className={`entry-modal-progressbar-wrapper`}>
@@ -13,7 +23,7 @@ const ProgressBar = (props) => {
                     overHalf ? 'entry-modal-text-invert' : ''
                 }`}
             >
-                {roundPercent}%
+                {preset === 'fail' ? '!' : `${roundPercent}%`}
             </div>
         </div>
     );

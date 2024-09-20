@@ -16,7 +16,7 @@ const Buttons = (props) => {
     } = props;
 
     return (
-        <div className={`${alignCol ? 'entry-modal-buttons-col' : ''}`}>
+        <div className={`${alignCol ? 'entry-modal-buttons-col' : 'entry-modal-buttons-row'}`}>
             {buttonInfos.map((button, idx) => {
                 return (
                     <Button
