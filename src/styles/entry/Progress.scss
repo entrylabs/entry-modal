@@ -1,7 +1,7 @@
 .progress {
     background: #fff;
-    width: 388px;
-    min-height: 203px;
+    min-width: 388px;
+    min-height: 278px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 6px;
@@ -51,7 +51,7 @@
         align-items: center;
 
         .content {
-            width: 320px;
+            min-width: 320px;
             color: #2c313d;
             font-family: NanumGothicOTF;
             font-weight: bold;
@@ -117,6 +117,33 @@
             }
         }
 
+        .img_checked {
+            background-image: url(../../styles/assets/progress_checked.svg);
+            width: 66px;
+            height: 66px;
+            margin-top: 27px;
+        }
+
+        .img_beforeConnect {
+            background-image: url(../../styles/assets/progress_beforeConnect.svg);
+            width: 66px;
+            height: 66px;
+            margin-top: 20px;
+        }
+
+        @keyframes connecting_img {
+            0% { background-image: url(../../styles/assets/progress_connecting1.svg); }
+            25% { background-image: url(../../styles/assets/progress_connecting2.svg); }
+            50% { background-image: url(../../styles/assets/progress_connecting3.svg); }
+            75% { background-image: url(../../styles/assets/progress_connecting4.svg); }
+            100% { background-image: url(../../styles/assets/progress_connecting1.svg); }
+        }
+        .img_connecting {
+            animation: connecting_img 4s infinite;
+            width: 120px;
+            height: 75px;
+        }
+
         .button-group {
             display: flex;
 
@@ -158,6 +185,57 @@
                     height: 48px;
                 }
             }
+
+            .buttons-row {
+                display: flex;
+            }
+        }
+
+        .progressbar-wrapper {
+            position: relative;
+            width: 300px;
+            height: 24px;
+            margin: 25px 0px 0px 0px;
+        }
+
+        .progressbar {
+            position: absolute;
+            appearance: none;
+            width: 300px;
+            height: 24px;
+        }
+
+        .progressbar::-webkit-progress-bar {
+            background: #e8e8e8;
+            border-radius: 14px;
+            border: solid 1px #D5D5D5;
+            overflow: hidden;
+        }
+    
+        .progressbar::-webkit-progress-value {
+            background: #ffb500;
+            border-radius: 14px;
+        }
+
+        .progressbar-text {
+            position: absolute;
+            left: 43%;
+            top: 2px;
+            width: 40px;
+            height: 24px;
+            font-family: NanumGothicOTF;
+            font-size: 14px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.71;
+            letter-spacing: -0.5px;
+            text-align: center;
+            color: #000000;
+        }
+
+        .text-invert {
+            color: #ffffff;
         }
     }
 }

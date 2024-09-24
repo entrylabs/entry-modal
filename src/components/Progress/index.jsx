@@ -1,8 +1,9 @@
-import React, { useEffect, useCallback, useMemo } from 'react';
+import React, { useEffect, useCallback, useMemo, useState } from 'react';
 import Buttons from '../common/Buttons.jsx';
 import Title from '../common/Title.jsx';
 import StepTitle from '../common/StepTitle.jsx';
-import { getLang } from '../../utils/index';
+import ProgressBar from './ProgressBar.jsx';
+import ContentImage from '../common/ContentImage.jsx';
 import { get as _get } from 'lodash-es';
 
 const Progress = (props) => {
@@ -12,7 +13,7 @@ const Progress = (props) => {
             titles: [],
             select: 0,
         },
-        contentImage,
+        imageType, // 'beforeConnect', 'connecting', 'checked'
         content,
         buttonInfos = [
             {
@@ -22,18 +23,17 @@ const Progress = (props) => {
                 btnValue: 'ok',
             },
         ],
-        options = { btnAlignCol: false },
+        options = {
+            btnAlignCol: false,
+            // style: { width, height }
+            // INFO: 예외상황은 progressPreset로, 일반적인 상황은 event.percent로 다룬다.
+            // progressPreset: 'full' | 'fail'
+            // event: { close, percent }
+        },
         onEvent,
     } = props;
 
-    // const { title, negativeButtonText, positiveButtonText } = useMemo(() => {
-    //     return {
-    //         title: props.title || getLang('General.progress_title', 'progress'),
-    //         negativeButtonText: options.negativeButtonText || getLang('Buttons.cancel', 'cancel'),
-    //         positiveButtonText:
-    //             options.positiveButtonText || getLang('Buttons.course_done', 'cancel'),
-    //     };
-    // }, [props.title, options]);
+    const [percent, setPercent] = useState(undefined);
 
     const handleButtonClick = useCallback(
         (event) => {
@@ -89,12 +89,35 @@ const Progress = (props) => {
         event.preventDefault();
     }, []);
 
+    const setEntryEvent = () => {
+        if (options && options.event) {
+            const entryAddEventListener = Entry.addEventListener.bind(Entry);
+            const entryRemoveEventListener = Entry.removeEventListener.bind(Entry);
+            const addEventListener = (eventName, func) => {
+                entryRemoveEventListener(eventName, func);
+                entryAddEventListener(eventName, func);
+            };
+
+            if (options.event.close) {
+                addEventListener(options.event.close, () => {
+                    handleButtonClick();
+                });
+            }
+            if (options.event.percent) {
+                addEventListener(options.event.percent, (percent) => {
+                    setPercent(percent);
+                });
+            }
+        }
+    };
+
     useEffect(() => {
         document.body.style.overflow = 'hidden';
         document.addEventListener('keydown', keyboardEvent);
         document.addEventListener('touchmove', preventDefault, {
             passive: false,
         });
+        setEntryEvent();
         return () => {
             document.body.style.overflow = 'auto';
             document.removeEventListener('keydown', keyboardEvent);
@@ -102,7 +125,7 @@ const Progress = (props) => {
                 passive: false,
             });
         };
-    }, [keyboardEvent, preventDefault]);
+    }, [keyboardEvent, preventDefault, options.event]);
 
     return (
         <div className={'entry-modal-progress'}>
@@ -114,13 +137,22 @@ const Progress = (props) => {
             >
                 {title}
             </Title>
-            <div className={'entry-modal-contentView'}>
+            <div
+                className={'entry-modal-contentView'}
+                style={options?.style ? options.style : null}
+            >
                 <StepTitle
                     className={'entry-modal-stepTitle'}
                     titles={stepTitle.titles}
                     select={stepTitle.select}
                 />
                 <div className={'entry-modal-content'}>{renderContent}</div>
+                {!!imageType && typeof imageType === 'string' && (
+                    <ContentImage imageType={imageType} />
+                )}
+                {(!!percent || options.progressPreset) && (
+                    <ProgressBar percent={percent} preset={options && options.progressPreset} />
+                )}
                 <div className={'entry-modal-button-group'}>
                     <Buttons
                         buttonInfos={buttonInfos}

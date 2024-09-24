@@ -16,8 +16,8 @@ const Buttons = (props) => {
     } = props;
 
     return (
-        <div className={`${alignCol ? 'entry-modal-buttons-col' : ''}`}>
-            {buttonInfos.map((button) => {
+        <div className={`${alignCol ? 'entry-modal-buttons-col' : 'entry-modal-buttons-row'}`}>
+            {buttonInfos.map((button, idx) => {
                 return (
                     <Button
                         className={`entry-modal-button ${
@@ -29,6 +29,7 @@ const Buttons = (props) => {
                             defaultOnClick(event);
                         }}
                         btnValue={button.btnValue}
+                        key={`button_${idx}`}
                     />
                 );
             })}
