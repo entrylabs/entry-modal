@@ -7,12 +7,22 @@ import { get as _get } from 'lodash-es';
 const Confirm = (props) => {
     const { content, options = {}, onEvent } = props;
 
-    const { title, negativeButtonText, positiveButtonText } = useMemo(() => {
+    const {
+        title,
+        negativeButtonText,
+        positiveButtonText,
+        negativeButtonValue = 'cancel',
+        positiveButtonValue = 'ok',
+        resultType = 'boolean',
+    } = useMemo(() => {
         return {
             title: props.title || getLang('General.confirm_title', 'confirm'),
             negativeButtonText: options.negativeButtonText || getLang('Buttons.cancel', 'cancel'),
             positiveButtonText:
                 options.positiveButtonText || getLang('Buttons.course_done', 'cancel'),
+            negativeButtonValue: options.negativeButtonValue,
+            positiveButtonValue: options.positiveButtonValue,
+            resultType: options.resultType,
         };
     }, [props.title, options]);
 
@@ -27,6 +37,11 @@ const Confirm = (props) => {
                 value = event;
             } else {
                 value = _get(event, 'target.dataset.value');
+            }
+
+            if (resultType === 'string') {
+                onEvent(value);
+                return;
             }
 
             onEvent(value === 'ok');
@@ -103,13 +118,13 @@ const Confirm = (props) => {
                         className={`entry-modal-button entry-modal-cancelButton`}
                         text={negativeButtonText}
                         onClick={handleButtonClick}
-                        btnValue={'cancel'}
+                        btnValue={negativeButtonValue}
                     />
                     <Button
                         className={'entry-modal-button'}
                         text={positiveButtonText}
                         onClick={handleButtonClick}
-                        btnValue={'ok'}
+                        btnValue={positiveButtonValue}
                     />
                 </div>
             </div>
