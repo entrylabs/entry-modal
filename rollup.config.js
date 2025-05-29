@@ -31,10 +31,19 @@ const inputSrc = [
 export default inputSrc.map(([option]) => {
     return {
         ...option,
-
+        external: ['react', 'react-dom'],
+        output: {
+            ...option.output,
+            globals: {
+                react: 'React',
+                'react-dom': 'ReactDOM',
+            },
+        },
         plugins: [
             commonjs(),
-            nodeResolve(),
+            nodeResolve({
+                browser: option.output.format === 'umd',
+            }),
             babel({
                 babelHelpers: 'runtime',
                 exclude: 'node_modules/**/*.(ts|tsx|js|jsx)',
